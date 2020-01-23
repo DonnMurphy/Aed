@@ -4,6 +4,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
+    <!-- Account Label Strings -->
+    <string name="account_wallet_balance_label">Balance:</string>
+    <string name="account_wallet_network_label">Network:</string>
+    <string name="account_wallet_address_label">Eth Address:</string>
+
 
     <!-- QR Code related strings -->
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>

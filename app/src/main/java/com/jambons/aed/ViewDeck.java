@@ -27,16 +27,18 @@ public class ViewDeck extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        eth = new EthUtils(this.getContext(), this.getActivity());
+        //eth = new EthUtils(this.getContext(), this.getActivity());
 
-        eth.connectToEthNetwork();
+        //eth.connectToEthNetwork();
         //eth.createWallet();
-        eth.getAddress();
+        //eth.getAddress();
+
+
         View view = inflater.inflate(R.layout.fragment_view_deck, container, false);
         RecyclerView rvCards = view.findViewById(R.id.rvCardList);
 
         // Initialize cards
-        cards = Card.createCardsList(20);
+        cards = Card.createCardsList(10);
         // Create adapter passing in the sample user data
         deck_adapter adapter = new deck_adapter(cards);
         // Attach the adapter to the recyclerview to populate items

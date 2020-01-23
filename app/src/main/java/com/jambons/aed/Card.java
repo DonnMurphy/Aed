@@ -31,7 +31,7 @@ public class Card {
             ArrayList<Card> cards = new ArrayList<Card>();
 
             for (int i = 1; i <= numCards; i++) {
-                cards.add(new Card("Person " + ++lastCardId, (i + 1), (i + 3)));
+                cards.add(new Card("Sheepie " + ++lastCardId, (i + 1), (i + 3)));
             }
 
             return cards;

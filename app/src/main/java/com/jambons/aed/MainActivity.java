@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -66,7 +68,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     */
-
+    // OnClickListeners For Bottom Nav - TODO Code Refs!!!
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_scan:
+                        Intent I = new Intent(getApplicationContext(),ScanMenu.class);
+                        startActivity(I);
+                        break;
+                    case R.id.action_view_deck:
+                        Intent J = new Intent(getApplicationContext(),ViewDeck2.class);
+                        startActivity(J);
+                        break;
+                    case R.id.action_account:
+                        Toast.makeText(MainActivity.this, "Account", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_settings:
+                        Intent j = new Intent(getApplicationContext(), new_nav_test.class);
+                        startActivity(j);
+                        break;
+                    case R.id.action_view_all:
+                        Toast.makeText(MainActivity.this, "View All Cards", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -78,8 +107,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //s/tartActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
                 //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 //        new ScannerFragment()).commit();
-                Intent I = new Intent(getApplicationContext(),ScanMenu.class);
-                startActivity(I);
+                //Intent I = new Intent(getApplicationContext(),ScanMenu.class);
+                //startActivity(I);
+                Intent j = new Intent(getApplicationContext(), new_nav_test.class);
+                startActivity(j);
                 break;
 
             case R.id.nav_view_deck:
@@ -101,5 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+
 
 }

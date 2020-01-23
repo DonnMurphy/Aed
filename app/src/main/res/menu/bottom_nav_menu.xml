@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/action_scan"
+            android:enabled="true"
+            android:icon="@drawable/ic_action_scan"
+            android:title="Scan New Card"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_view_deck"
+            android:enabled="true"
+            android:icon="@drawable/ic_action_view_deck"
+            android:title="My Deck"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_account"
+            android:enabled="true"
+            android:icon="@drawable/ic_action_view_account"
+            android:title="My Account"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_view_all"
+            android:enabled="true"
+            android:icon="@drawable/ic_action_view_all"
+            android:title="My Account"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_settings"
+            android:enabled="true"
+            android:icon="@drawable/ic_action_settings"
+            android:title="My Account"
+            app:showAsAction="ifRoom" />
+    </menu>
