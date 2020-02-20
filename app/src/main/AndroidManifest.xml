@@ -13,8 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
         <activity android:name=".AccountView"></activity>
-        <activity android:name=".ViewDeck2" />
-        <activity android:name=".new_nav_test" />
         <activity android:name=".ScanMenu" />
         <activity android:name=".ViewDeck" />
         <activity android:name=".MainActivity">

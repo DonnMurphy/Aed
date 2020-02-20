@@ -16,10 +16,15 @@ import org.web3j.crypto.ECKeyPair;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.RemoteCall;
+//import org.web3j.protocol.core.RemoteFunctionCall;
+import org.web3j.protocol.core.methods.response.EthGetBalance;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.ChainId;
+//import org.web3j.tx.ChainIdLong;
 import org.web3j.tx.Transfer;
 import org.web3j.tx.gas.ContractGasProvider;
 import org.web3j.tx.gas.DefaultGasProvider;
@@ -27,13 +32,17 @@ import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.utils.Convert;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.KeyPairGenerator;
 import java.security.Provider;
 import java.security.Security;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
+
+import okhttp3.Interceptor;
 
 public class EthUtils {
 
@@ -68,12 +77,12 @@ public class EthUtils {
 
         try {
             // contract addresses
-            this.sheepFactoryAddress = "0xeE96E4c67AF958eF9eBbe03FB6C885D6E3BADC08";
-            this.sheepHelperAddress = "0x1e1971E5e258493eAAA1bD32AB3F194f005682e5";
+            this.sheepFactoryAddress = "0x271270Dd83B64Cfc9C3570983a3E0D5BbF2AC6c8";
+            this.sheepHelperAddress = "0x1294e8D7cE19aDc1a5F7bCD056E9539329e0d712";
             this.infuraUrl = "https://ropsten.infura.io/v3/0f42ed98ccbc4d5aa6c4872ba8ebe005";
             this.connectToEthNetwork();
-            gasLimit = BigInteger.valueOf(20_000_000_000L);
-            gasPrice = BigInteger.valueOf(4300000);
+            gasLimit = BigInteger.valueOf(40_000_000_000L);
+            gasPrice = BigInteger.valueOf(3000000);
             this.userCredentials = loadTestCredientials();//WalletUtils.loadCredentials(password, walletFile);
             // Log.wtf("bal", web3.ethGetBalance(userCredentials.getAddress(), new DefaultBlockParameter()));
             //setupBouncyCastle();
@@ -87,6 +96,23 @@ public class EthUtils {
         AsyncTaskRunner runner = new AsyncTaskRunner();
         //String sleepTime = time.getText().toString();
         runner.execute();
+    }
+
+    public String getAccountBalance(String AccountAddress) {
+        String AccountBal = "SKINT";
+        try {
+            EthGetBalance ethGetBalance = web3
+                    .ethGetBalance(AccountAddress, DefaultBlockParameterName.LATEST)
+                    .sendAsync()
+                    .get();
+
+            BigInteger wei = ethGetBalance.getBalance();
+            AccountBal = wei.toString();
+        } catch(Exception e) {
+            Log.wtf("ERROR", e);
+            e.printStackTrace();
+        }
+        return AccountBal;
     }
 
     public void connectToEthNetwork() {
@@ -153,6 +179,18 @@ public class EthUtils {
         }
         return address;
     }
+
+    /*
+    public String getChain(){
+        String Chain = "MEME";
+        try {
+            Chain = this.web3.netVersion().send().getNetVersion();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Chain;
+    } */
 
     public void sendTransaction() {
         try {
@@ -221,12 +259,12 @@ public class EthUtils {
         @Override
         protected String doInBackground(String... params) {
             String sheepFactoryAddress = "0xeE96E4c67AF958eF9eBbe03FB6C885D6E3BADC08";
-            String sheepHelperAddress = "0x1e1971E5e258493eAAA1bD32AB3F194f005682e5";
+            String sheepHelperAddress = "0x923bcFFC43024279FbeFc9ab3e2A8CBAaaBD03AE";
             String infuraUrl = "https://ropsten.infura.io/v3/0f42ed98ccbc4d5aa6c4872ba8ebe005";
             Web3j web3 = Web3j.build(new HttpService(infuraUrl));
             //this.connectToEthNetwork();
             gasLimit = BigInteger.valueOf(20_000_000_000L);
-            gasPrice = BigInteger.valueOf(4300000);
+            gasPrice = BigInteger.valueOf(8300000);
             // Credentials userCredentials = WalletUtils.loadCredentials(password, walletFile);
 
                 ContractGasProvider gassy = new StaticGasProvider(BigInteger.valueOf(40000), BigInteger.valueOf(100000));
@@ -234,6 +272,8 @@ public class EthUtils {
             try {
                 //   Log.wtf("GAS PRICWE", this.web3.ethGasPrice().send().toString());
                 SheepFactory sheepFactory = SheepFactory.load(sheepFactoryAddress, web3, userCredentials, gassy);
+                SheepHelper sheepHelper = SheepHelper.load(sheepHelperAddress,web3,userCredentials, gassy);
+                Log.wtf("Valid Helper???",String.valueOf(sheepHelper.isValid()));
                 Log.wtf("THE ETHER Address!!!", userCredentials.getAddress());
                 Log.wtf("THE NEtwork", web3.getClass().toString());//sheepFactory.getDeployedAddress("Ropsten"));
                // CompletableFuture <TransactionReceipt> billyRecieptFuture = sheepFactory.createRandomSheep("billy").ethCall();
@@ -243,10 +283,19 @@ public class EthUtils {
                     Log.wtf("ITS NOT NULLLLLL", sheepFactory.getContractAddress());
                     //  Boolean valida = sheepFactory.isValid();
                     //  Log.wtf("IS IT VALID???", valida.toString());
-                   // CompletableFuture<TransactionReceipt> billyRecieptFuture = sheepFactory.createRandomSheep("billyaa").sendAsync();
-                  //  billyRecieptFuture.thenAccept(transactionReceipt -> {
-                   //  Log.wtf("KILL ME PLZ", transactionReceipt.getContractAddress());
-                    ;
+                   // CompletableFuture<TransactionReceipt> billyRecieptFuture = sheepHelper.createRandomSheep("billyaa").sendAsync();
+                   // billyRecieptFuture.thenAccept(transactionReceipt -> {
+                    //    Log.wtf("KILL ME PLZ", transactionReceipt.getContractAddress());
+                    //});
+                    //CompletableFuture<TransactionReceipt> billyRecieptFuturea = sheepHelper.createRandomSheep("Seanie").sendAsync();
+                    //billyRecieptFuture.thenAccept(transactionReceipt -> {
+                    //    Log.wtf("KILL ME PLZ", transactionReceipt.getContractAddress());
+                   // });
+                   // CompletableFuture<TransactionReceipt> billyRecieptFutureb = sheepHelper.createRandomSheep("Andrew").sendAsync();
+                    //billyRecieptFuture.thenAccept(transactionReceipt -> {
+                     //   Log.wtf("KILL ME PLZ", transactionReceipt.getContractAddress());
+                    //});
+
                    /*billyRecieptFuture.thenAcceptAsync(transactionReceipt -> {
                        Log.wtf("KILL ME PLZ", transactionReceipt.getContractAddress());
                         Log.wtf("Billy RECIPT", "HOOO CHRIST");
@@ -262,19 +311,51 @@ public class EthUtils {
                 }
 
 
-                SheepHelper sheepHelper = new SheepHelper(sheepHelperAddress, web3, userCredentials, gassy);
+              //  SheepHelper sheepHelper = new SheepHelper(sheepHelperAddress, web3, userCredentials, gassy);
 
                 Log.wtf("Lord SAVE ME ", sheepHelper.getContractAddress());
+                CompletableFuture<TransactionReceipt> futureSheepsa = sheepHelper.getSheepById(BigInteger.valueOf(1)).sendAsync();
+                        futureSheepsa.thenAccept(transactionReceipt -> {
+                    Log.wtf("Lord SAVE TADHG NAGE3 ", sheepHelper.getContractAddress());
+                    Log.wtf("PLEAse", transactionReceipt.getTransactionHash());
+                    String mysheeps = transactionReceipt.toString();
+                    Log.wtf("DA RECIPT LAD", mysheeps);
+                }).exceptionally(transactionReceipt  -> {
+                    Log.wtf("SOMETHING HAS GONE WRONG htlpear", transactionReceipt);
+                    return null;
+                });
+
+                //Log.wtf("THe CHain FOr The Lols", ChainIdLong.ROPSTEN);
               //  RemoteCall<BigInteger> remoteCall = sheepHelper.getSheepsByOwner(userCredentials.getAddress());
-                CompletableFuture<TransactionReceipt> futureSheeps = sheepHelper.getSheepsByOwner(userCredentials.getAddress()).sendAsync();
+                /*
+               CompletableFuture<TransactionReceipt> futureSheeps = sheepHelper.getSheepsByOwner(userCredentials.getAddress()).sendAsync();
+                Log.wtf("Last Chance Saloon",sheepHelper.getSheepTotal().encodeFunctionCall());
                 futureSheeps.thenAccept(transactionReceipt -> {
+                    Log.wtf("Lord SAVE TADHG NAGE3 ", sheepHelper.getContractAddress());
+                    String mysheeps = transactionReceipt.getBlockHash();
+                    Log.wtf("DA RECIPT LAD", mysheeps);
+                }).exceptionally(transactionReceipt  -> {
+                    Log.wtf("SOMETHING HAS GONE WRONG htlper", transactionReceipt.getMessage());
+                    return null;
+                });
+                */
+
+               //TransactionReceipt count = sheepHelper.getSheepTotal().send();
+
+               // Log.wtf("ffs", count.getCumulativeGasUsed().toString());
+                //Log.wtf("ffs", sheepHelper.getSheepTotal().send().getTransactionHash());
+                //Log.wtf("ffs", count.send().getTransactionIndexRaw());
+
+
+               /* futureSheeps.thenAccept(transactionReceipt -> {
                     Log.wtf("Lord SAVE TADHG NAGE3 ", sheepHelper.getContractAddress());
                     String mysheeps = transactionReceipt.toString();
                     Log.wtf("DA RECIPT LAD", mysheeps);
                 }).exceptionally(transactionReceipt  -> {
                     Log.wtf("SOMETHING HAS GONE WRONG htlper", transactionReceipt);
                     return null;
-                });
+                }); */
+               // List<String> futuraSheeps = sheepHelper.getSheepsByOwner(userCredentials.getAddress()).send();
                 //ownedSheeps = futureSheeps.get();
 
                // String value = ownedSheeps.toString();
@@ -337,6 +418,9 @@ public class EthUtils {
 
         }
     }
+
+
+
 }
 
 

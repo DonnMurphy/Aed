@@ -1,16 +1,19 @@
 package com.jambons.aed;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -45,6 +48,44 @@ public class ScanMenu extends AppCompatActivity {
                 qrScan.initiateScan();
             }
         });
+
+
+
+
+
+        // NAVIGATION BAR CODE TODO - MOVE TO FRAGMENT
+        // OnClickListeners For Bottom Nav - TODO Code Refs!!!
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_scan:
+                        Intent I = new Intent(getApplicationContext(),ScanMenu.class);
+                        startActivity(I);
+                        //ScanUtils qrScanner;
+                        // qrScanner = new ScanUtils(getApplicationContext(), appActivity);
+                        break;
+                    case R.id.action_view_deck:
+                        Intent J = new Intent(getApplicationContext(), ViewDeck.class);
+                        startActivity(J);
+                        break;
+                    case R.id.action_account:
+                        Intent K = new Intent(getApplicationContext(),AccountView.class);
+                        startActivity(K);
+                        break;
+                    case R.id.action_settings:
+                        Toast.makeText(ScanMenu.this, "Settings", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_view_all:
+                        Toast.makeText(ScanMenu.this, "View All Cards", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
+
+
     }
 
     @Override
@@ -75,4 +116,6 @@ public class ScanMenu extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+
 }
