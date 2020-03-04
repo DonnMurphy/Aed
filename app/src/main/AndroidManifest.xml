@@ -6,23 +6,32 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cryptids_logo_v2"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/cryptids_logo_v2"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".AccountView"></activity>
-        <activity android:name=".ScanMenu" />
-        <activity android:name=".ViewDeck" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".CreateNewAuctionActivity"></activity>
+        <activity android:name=".ViewAuction" />
+        <activity android:name=".ViewAuctions" />
+        <activity android:name=".ViewSheep" />
+        <activity android:name=".AccountUpdate" />
+        <activity android:name=".SignupActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ViewAllSheep" />
+        <activity android:name=".AccountView" />
+        <activity android:name=".ScanMenu" />
+        <activity android:name=".ViewDeck" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

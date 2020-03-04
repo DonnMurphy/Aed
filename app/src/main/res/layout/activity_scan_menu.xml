@@ -7,6 +7,7 @@
     tools:context=".ScanMenu">
 
     <!-- TODO - Refactor (Remove This and replace with Scan Card Menu Option which goes striaght to the camera) -->
+    <!--
     <Button
         android:id="@+id/btnStartScan"
         android:layout_width="wrap_content"
@@ -17,7 +18,27 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.231" /> -->
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnStartScan"
+        android:layout_width="172dp"
+        android:layout_height="248dp"
+
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="Start Scanner"
+
+        android:tint="#8BC34A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.255">Start
+        Scanner</com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <TextView
         android:id="@+id/tvScanResults"
@@ -28,14 +49,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartScan" />
+        app:layout_constraintTop_toBottomOf="@+id/btnStartScan"
+        app:layout_constraintVertical_bias="0.376" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorPrimary"
+        android:background="@drawable/cryptids_menu_background_primary"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

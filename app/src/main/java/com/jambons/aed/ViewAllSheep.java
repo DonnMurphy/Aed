@@ -11,46 +11,41 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class ViewDeck extends AppCompatActivity {
+public class ViewAllSheep extends AppCompatActivity {
+    // Volly Get and Post code based on tutorial:
+    //" Android Volly Get and Post Tutorial"
+    // https://youtube.com/watch?wzK19AaEgzk
     ArrayList<Sheep> sheeps;
     ArrayList<Sheep> sheep;
     Context appContext;
     EthUtils eth ;
-    private String userId;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_deck);
+        setContentView(R.layout.activity_view_all_sheep);
         appContext = getApplicationContext();
-        // TODO Temporary PLease change
-        mAuth = FirebaseAuth.getInstance();
-        userId = mAuth.getCurrentUser().getUid();
 
         //eth = new EthUtils(this.getContext(), this.getActivity());
 
- //       eth.connectToEthNetwork();
+        //       eth.connectToEthNetwork();
         //eth.createWallet();
         //eth.getAddress();
 
 
         //View view = inflater.inflate(R.layout.fragment_view_deck, container, false);
         RecyclerView rvCards = this.findViewById(R.id.rvCardList);
-        ///DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCards.getContext(),
-         //       DividerItemDecoration.VERTICAL);
-        //rvCards.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCards.getContext(),
+                DividerItemDecoration.VERTICAL);
+        rvCards.addItemDecoration(dividerItemDecoration);
         // Initialize cards
 
-          RestUtils.getInstance(getApplicationContext()).getSheepByOwner(userId, new SheepRestListener<ArrayList<Sheep>>() {
+        RestUtils.getInstance(getApplicationContext()).getAllSheep(new SheepRestListener<ArrayList<Sheep>>() {
             @Override
             public void getResult(ArrayList<Sheep> Object) {
                 sheeps = Object;
@@ -114,4 +109,7 @@ public class ViewDeck extends AppCompatActivity {
     }
 
 
+
 }
+
+

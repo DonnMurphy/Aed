@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewSheep">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivSheepDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sheep_dab"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/sheep_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="24dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            >
+
+            <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    > -->
+            <TextView
+                android:id="@+id/tvSheepName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingLeft="2dp"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <!-- </LinearLayout>
+
+            </LinearLayout> -->
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/sheep_info"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:weightSum="100"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                    android:layout_marginBottom="8dp"
+                        android:layout_weight="50"
+                    android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvSheepHPLabel"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="@string/sheep_hp_label"/>
+                        <TextView
+                            android:id="@+id/tvSheepHP"
+                            android:layout_width="fill_parent"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:paddingLeft="2dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="50"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/tvSheepDPLabel"
+                            android:layout_width="fill_parent"
+                            android:textAlignment="center"
+
+                            android:layout_height="wrap_content"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="@string/sheep_dp_label"/>
+                        <TextView
+                            android:id="@+id/tvSheepDP"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:paddingLeft="2dp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:id="@+id/tvSheepUIDLabel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:text="@string/sheep_uid_label"
+                        android:layout_weight="70"/>
+
+                    <TextView
+                        android:id="@+id/tvSheepUID"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="30"
+                        android:paddingLeft="2dp"
+                        android:textAlignment="viewEnd"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:id="@+id/tvOwnerNameLabel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:text="@string/sheep_owner_name_label"
+                        android:layout_weight="70"/>
+                    <TextView
+                        android:id="@+id/tvOwnerName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textAlignment="viewEnd"
+                        android:paddingLeft="2dp"
+                        android:layout_weight="30"
+                        />
+                </LinearLayout>
+               <!-- <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/tvSheepReleasedStatusLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:text="@string/sheep_released_status_label"/>
+                    <TextView
+                        android:id="@+id/tvSheepReleasedStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:paddingLeft="2dp"
+                        />
+                </LinearLayout> -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvSheepMintedDateLabel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/sheep_minted_date_label"
+                        android:layout_weight="70"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvSheepMintedDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+
+                        android:textAlignment="viewEnd"
+                        android:textSize="16sp"
+                        android:paddingLeft="2dp"
+                        android:layout_weight="30"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btnReleaseSheep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="center"
+                    android:text="@string/release_sheep_button_label"/>
+                <Button
+                    android:id="@+id/btnCreateSheepAuctionIntent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="center"
+                    android:text="@string/create_sheep_auction_button_label"/>
+            </LinearLayout>
+        <Button
+            android:id="@+id/btnRegisterSheep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:text="@string/register_sheep_button_label"/>
+    </LinearLayout>
+</ScrollView>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:id="@+id/bottom_navigation"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:background="@drawable/cryptids_menu_background_primary"
+app:itemIconTint="@android:color/white"
+app:itemTextColor="@android:color/white"
+app:layout_constraintBottom_toBottomOf="parent"
+app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

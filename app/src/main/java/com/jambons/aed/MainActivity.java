@@ -41,11 +41,17 @@ public class MainActivity extends AppCompatActivity {
                         Intent K = new Intent(getApplicationContext(),AccountView.class);
                         startActivity(K);
                         break;
-                    case R.id.action_settings:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                    case R.id.action_view_auctions:
+                        //Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        //break;
+                        Intent W = new Intent(getApplicationContext(),ViewAuctions.class);
+                        startActivity(W);
                         break;
                     case R.id.action_view_all:
-                        Toast.makeText(MainActivity.this, "View All Cards", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MainActivity.this, "View All Cards", Toast.LENGTH_SHORT).show();
+                        //break;
+                        Intent M = new Intent(getApplicationContext(),ViewAllSheep.class);
+                        startActivity(M);
                         break;
                 }
                 return true;

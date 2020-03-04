@@ -3,11 +3,39 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Important Strings -->
+    <string name="sheep_released_identifer">RELEASED</string>
 
     <!-- Account Label Strings -->
-    <string name="account_wallet_balance_label">Balance:</string>
+    <string name="account_balance_label">Balance:</string>
+    <string name="account_email_label">Email:</string>
+    <string name="account_email_verified_label">Email Verified?:</string>
     <string name="account_wallet_network_label">Network:</string>
-    <string name="account_wallet_address_label">Eth Address:</string>
+    <string name="account_smart_contract_label">Smart Contract Used:</string>
+
+    <!-- Sheep Label Strings -->
+    <string name="register_sheep_button_label">Register Sheep</string>
+    <string name="release_sheep_button_label">Release Sheep</string>
+    <string name="create_sheep_auction_button_label">Auction Sheep</string>
+    <string name="sheep_name_label">Name:</string>
+    <string name="sheep_uid_label">UID:</string>
+    <string name="sheep_hp_label">HP:</string>
+    <string name="sheep_dp_label">DP:</string>
+    <string name="sheep_dna_label">DNA:</string>
+    <string name="sheep_owner_name_label">Owner:</string>
+    <string name="sheep_released_status_label">Released?:</string>
+    <string name="sheep_minted_date_label">Minted At:</string>
+
+    <!-- Auction Label Strings -->
+    <string name="auction_current_price_label">Current Price:</string>
+    <string name="auction_starting_price_label">Starting Price:</string>
+    <string name="auction_ending_price_label">Ending Price:</string>
+    <string name="auction_remaining_time_label">Time Remaining:</string>
+    <string name="auction_started_at_label">Auction Started At:</string>
+    <string name="create_auction_finalize_button_label">Create Auction:</string>
+    <string name="auction_sheep_name_label">Sheep Name:</string>
+    <string name="auction_cancel_auction_button_label">Cancel Auction</string>
+    <string name="auction_post_bid_button_label">Post Bid:</string>
 
 
     <!-- QR Code related strings -->

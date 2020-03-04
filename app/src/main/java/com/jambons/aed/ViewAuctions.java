@@ -11,57 +11,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class ViewDeck extends AppCompatActivity {
-    ArrayList<Sheep> sheeps;
+public class ViewAuctions extends AppCompatActivity {
+    ArrayList<Auction> auctions;
     ArrayList<Sheep> sheep;
     Context appContext;
     EthUtils eth ;
-    private String userId;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_deck);
+        setContentView(R.layout.activity_view_auctions);
         appContext = getApplicationContext();
-        // TODO Temporary PLease change
-        mAuth = FirebaseAuth.getInstance();
-        userId = mAuth.getCurrentUser().getUid();
 
         //eth = new EthUtils(this.getContext(), this.getActivity());
 
- //       eth.connectToEthNetwork();
+        //       eth.connectToEthNetwork();
         //eth.createWallet();
         //eth.getAddress();
 
 
         //View view = inflater.inflate(R.layout.fragment_view_deck, container, false);
-        RecyclerView rvCards = this.findViewById(R.id.rvCardList);
-        ///DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCards.getContext(),
-         //       DividerItemDecoration.VERTICAL);
-        //rvCards.addItemDecoration(dividerItemDecoration);
+        RecyclerView rvAuctions = this.findViewById(R.id.rvAuctionList);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvAuctions.getContext(),
+                DividerItemDecoration.VERTICAL);
+        rvAuctions.addItemDecoration(dividerItemDecoration);
         // Initialize cards
 
-          RestUtils.getInstance(getApplicationContext()).getSheepByOwner(userId, new SheepRestListener<ArrayList<Sheep>>() {
+        RestUtils.getInstance(getApplicationContext()).getAllAuctions(new SheepRestListener<ArrayList<Auction>>() {
             @Override
-            public void getResult(ArrayList<Sheep> Object) {
-                sheeps = Object;
-                Log.wtf("WHERE ARE THE SHEEP", sheeps.toString());
-                deck_adapter adapter = new deck_adapter(appContext, sheeps);
+            public void getResult(ArrayList<Auction> Object) {
+                auctions = Object;
+                Log.wtf("WHERE ARE THE SHEEP", auctions.toString());
+                auctions_adapter adapter = new auctions_adapter(appContext, auctions);
 
                 // Set layout manager to position the items
                 // LinearLayoutManager layoutManager = new LinearLayoutManager(c);
-                rvCards.setLayoutManager(new LinearLayoutManager(appContext));
+                rvAuctions.setLayoutManager(new LinearLayoutManager(appContext));
                 // Attach the adapter to the recyclerview to populate items
-                rvCards.setAdapter(adapter);
+                rvAuctions.setAdapter(adapter);
             }
         });
         // Create adapter passing in the sample user data

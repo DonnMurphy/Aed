@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1056505233136",
+    "firebase_url": "https://cryptids-fyp.firebaseio.com",
+    "project_id": "cryptids-fyp",
+    "storage_bucket": "cryptids-fyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056505233136:android:e8058a40cf130da8e94c35",
+        "android_client_info": {
+          "package_name": "com.jambons.aed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056505233136-hqtpaq5pk3gab6p7l205tgsgard4637v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jambons.aed",
+            "certificate_hash": "debdfadd483c90b65bf25c69631ea3eb10eb2e3e"
+          }
+        },
+        {
+          "client_id": "1056505233136-g3h10c70aqs8qo0dili2uq9uafjrt0gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOfdkaaP7iMvT_ZzcH3Q2SHbZfEOIwvHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056505233136-g3h10c70aqs8qo0dili2uq9uafjrt0gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

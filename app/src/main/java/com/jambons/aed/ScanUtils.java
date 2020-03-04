@@ -13,7 +13,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+//QR Code Based off of the below tutorial:
+//"Android QR Code Scanner Tutorial using Zxing Library" - SImplified Coding
+//https://www.simplifiedcoding.net/android-qr-code-scanner-tutorial/
 
+//Use of Zxing Library is covered through Apache Open License
+//Tutorial Code has been modified to suit my project
 public class ScanUtils {
     private IntentIntegrator qrScan;
     private final Activity ScanActivity;

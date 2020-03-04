@@ -25,10 +25,16 @@
             android:icon="@drawable/ic_action_view_all"
             android:title="My Account"
             app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_open_hangouts"
+        android:enabled="true"
+        android:icon="@drawable/cryptids_logo_v2"
+        android:title="My Account"
+        app:showAsAction="ifRoom" />
         <item
-            android:id="@+id/action_settings"
+            android:id="@+id/action_view_auctions"
             android:enabled="true"
-            android:icon="@drawable/ic_action_settings"
-            android:title="My Account"
+            android:icon="@drawable/ic_action_view_auctions"
+            android:title="Auction House"
             app:showAsAction="ifRoom" />
     </menu>
