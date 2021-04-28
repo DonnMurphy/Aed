@@ -19,9 +19,40 @@ public class Auction {
 
     private String auctionStatus;
 
+    @SerializedName("winningBidPrice")
     private String finalBidPrice;
 
     private String auctionWinner;
+
+    public String getAuctionSheepName() {
+        return auctionSheepName;
+    }
+
+    public void setAuctionSheepName(String auctionSheepName) {
+        this.auctionSheepName = auctionSheepName;
+    }
+
+    public String getAuctionSheepUid() {
+        return auctionSheepUid;
+    }
+
+    public void setAuctionSheepUid(String auctionSheepUid) {
+        this.auctionSheepUid = auctionSheepUid;
+    }
+
+    public String getAuctionSheepImage() {
+        return auctionSheepImage;
+    }
+
+    public void setAuctionSheepImage(String auctionSheepImage) {
+        this.auctionSheepImage = auctionSheepImage;
+    }
+    @SerializedName("sheep_name")
+    private String auctionSheepName;
+    @SerializedName("sheep_uid")
+    private String auctionSheepUid;
+    @SerializedName("sheep_image")
+    private String auctionSheepImage;
 
 
     public String getAuctionWinner() {
@@ -104,7 +135,7 @@ public class Auction {
         this.finalBidPrice = finalBidPrice;
     }
 
-    public Auction(String auctionID, String sheepID, String sellerId, String startPrice, String endPrice, String auctionDuration, String startedAtT) {
+    public Auction(String auctionID, String sheepID, String sellerId, String startPrice, String endPrice, String auctionDuration, String startedAtT, String sheepImage, String sheepName, String sheepUid) {
         //this.ID = uid;
         auctionId = auctionID;
         sheepId = sheepID;
@@ -113,5 +144,8 @@ public class Auction {
         endingPrice = endPrice;
         duration= auctionDuration;
         startedAt = startedAtT;
+        auctionSheepImage = sheepImage;
+        auctionSheepImage = sheepName;
+        auctionSheepUid = sheepUid;
     }
 }

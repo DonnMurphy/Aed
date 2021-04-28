@@ -10,6 +10,16 @@ public class User implements Serializable {
     private String userId, userName;
     private int accountBalance;
 
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    private String profileImage;
+
 
     public User() {
 
@@ -47,10 +57,11 @@ public class User implements Serializable {
         this.accountBalance = accountBalance;
     }
 
-    public User(String userId, String userName, int accountBal){
+    public User(String userId, String userName, int accountBal, String profileUrl){
         this.userId = userId;
         this.userName = userName;
         this.accountBalance = accountBal;
+        this.profileImage = profileUrl;
     }
 
 

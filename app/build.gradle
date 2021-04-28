@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.ar.sceneform.plugin'
 
 repositories {
     mavenCentral()
@@ -29,6 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.ar.sceneform.ux:sceneform-ux:1.5.0"
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
@@ -37,6 +39,7 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -51,5 +54,162 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.android.support:design:28.0.0'
 
+    //Messaging Dependencies
+    implementation platform('com.google.firebase:firebase-bom:25.0.0')
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 }
+
+
+sceneform.asset('sampledata/model_sheep/sheep.obj',
+        'default',
+        'sampledata/model_sheep/sheep.sfa',
+        'src/main/assets/sheep')
+
+sceneform.asset('sampledata/model_shark/shark.obj',
+        'default',
+        'sampledata/model_shark/shark.sfa',
+        'src/main/assets/shark')
+
+sceneform.asset('sampledata/model_spinosaurobot/spinosaurobot.obj',
+        'default',
+        'sampledata/model_spinosaurobot/spinosaurobot.sfa',
+        'src/main/assets/spinosaurobot')
+
+sceneform.asset('sampledata/model_poodle/poodle.obj',
+        'default',
+        'sampledata/model_poodle/poodle.sfa',
+        'src/main/assets/poodle')
+
+sceneform.asset('sampledata/model_mosasaur/mosasaur.obj',
+        'default',
+        'sampledata/model_mosasaur/mosasaur.sfa',
+        'src/main/assets/mosasaur')
+
+sceneform.asset('sampledata/model_gymbunny/gymbunny.obj',
+        'default',
+        'sampledata/model_gymbunny/gymbunny.sfa',
+        'src/main/assets/gymbunny')
+
+
+sceneform.asset('sampledata/model_angler_fish/angler_fish_model.obj',
+        'default',
+        'sampledata/model_angler_fish/angler_fish_model.sfa',
+        'src/main/assets/angler_fish_model')
+
+sceneform.asset('sampledata/model_ballistic_bunny/ballistic_bunny_model.obj',
+        'default',
+        'sampledata/model_ballistic_bunny/ballistic_bunny_model.sfa',
+        'src/main/assets/ballistic_bunny_model')
+
+sceneform.asset('sampledata/model_barn_owl/barn_owl_model.obj',
+        'default',
+        'sampledata/model_barn_owl/barn_owl_model.sfa',
+        'src/main/assets/barn_owl_model')
+
+
+sceneform.asset('sampledata/model_car_walker/car_walker_model.obj',
+        'default',
+        'sampledata/model_car_walker/car_walker_model.sfa',
+        'src/main/assets/car_walker_model')
+
+
+
+sceneform.asset('sampledata/model_blue_ghost/saitone_model.obj',
+        'default',
+        'sampledata/model_blue_ghost/saitone_model.sfa',
+        'src/main/assets/saitone_model')
+
+sceneform.asset('sampledata/model_fox/fox_model.obj',
+        'default',
+        'sampledata/model_fox/fox_model.sfa',
+        'src/main/assets/fox_model')
+
+sceneform.asset('sampledata/model_gerbil/gerbil_model.obj',
+        'default',
+        'sampledata/model_gerbil/gerbil_model.sfa',
+        'src/main/assets/gerbil_model')
+
+sceneform.asset('sampledata/model_gold_fish/gold_fish_model.obj',
+        'default',
+        'sampledata/model_gold_fish/gold_fish_model.sfa',
+        'src/main/assets/gold_fish_model')
+
+sceneform.asset('sampledata/model_gorilla/gorilla_model.obj',
+        'default',
+        'sampledata/model_gorilla/gorilla_model.sfa',
+        'src/main/assets/gorilla_model')
+
+sceneform.asset('sampledata/model_lola_monster/lola_monster_model.obj',
+        'default',
+        'sampledata/model_lola_monster/lola_monster_model.sfa',
+        'src/main/assets/lola_monster_model')
+
+sceneform.asset('sampledata/model_mech_dragon/mecha_dragon_model.obj',
+        'default',
+        'sampledata/model_mech_dragon/mecha_dragon_model.sfa',
+        'src/main/assets/mecha_dragon_model')
+
+sceneform.asset('sampledata/model_mecha_horse/mecha_horse_model.obj',
+        'default',
+        'sampledata/model_mecha_horse/mecha_horse_model.sfa',
+        'src/main/assets/mecha_horse_model')
+
+sceneform.asset('sampledata/model_orange_man/orange_man_model.obj',
+        'default',
+        'sampledata/model_orange_man/orange_man_model.sfa',
+        'src/main/assets/orange_man_model')
+
+sceneform.asset('sampledata/model_panda/panda_model.obj',
+        'default',
+        'sampledata/model_panda/panda_model.sfa',
+        'src/main/assets/panda_model')
+
+sceneform.asset('sampledata/model_pink_poodle/pink_poodle_model.obj',
+        'default',
+        'sampledata/model_pink_poodle/pink_poodle_model.sfa',
+        'src/main/assets/pink_poodle_model')
+
+sceneform.asset('sampledata/model_plane_dog/plane_dog_model.obj',
+        'default',
+        'sampledata/model_plane_dog/plane_dog_model.sfa',
+        'src/main/assets/plane_dog_model')
+
+sceneform.asset('sampledata/model_platypus/platypus_model.obj',
+        'default',
+        'sampledata/model_platypus/platypus_model.sfa',
+        'src/main/assets/platypus_model')
+
+sceneform.asset('sampledata/model_pugdolf/pugdolf_model.obj',
+        'default',
+        'sampledata/model_pugdolf/pugdolf_model.sfa',
+        'src/main/assets/pugdolf_model')
+
+sceneform.asset('sampledata/model_raccoon/raccoon_model.obj',
+        'default',
+        'sampledata/model_raccoon/raccoon_model.sfa',
+        'src/main/assets/raccoon_model')
+
+sceneform.asset('sampledata/model_shibu/shiba_inu_model.obj',
+        'default',
+        'sampledata/model_shibu/shiba_inu_model.sfa',
+        'src/main/assets/shiba_inu_model')
+
+sceneform.asset('sampledata/model_stone_head/stone_head_model.obj',
+        'default',
+        'sampledata/model_stone_head/stone_head_model.sfa',
+        'src/main/assets/stone_head_model')
+
+sceneform.asset('sampledata/model_koala/koala_model.obj',
+        'default',
+        'sampledata/model_koala/koala_model.sfa',
+        'src/main/assets/koala_model')
+
+sceneform.asset('sampledata/model_lion/lion_model.obj',
+        'default',
+        'sampledata/model_lion/lion_model.sfa',
+        'src/main/assets/lion_model')

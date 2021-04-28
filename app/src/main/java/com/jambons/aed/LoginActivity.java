@@ -24,11 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText editTextEmail, editTextPassword;
     ProgressBar progressBar;
-    Button textViewSignup;
+    TextView textViewSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // setTheme(android.R.style.Theme);
        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -95,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     finish();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, ViewDeck.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else {
@@ -109,9 +108,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        setTheme(R.style.AppTheme);
+
+
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, ViewDeck.class));
         }
     }
 }

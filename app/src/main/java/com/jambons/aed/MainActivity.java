@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                         Intent J = new Intent(getApplicationContext(), ViewDeck.class);
                         startActivity(J);
                         break;
-                    case R.id.action_account:
-                        Intent K = new Intent(getApplicationContext(),AccountView.class);
+                    case R.id.action_open_dual:
+                        Intent K = new Intent(getApplicationContext(),CardDual.class);
                         startActivity(K);
                         break;
                     case R.id.action_view_auctions:

@@ -64,14 +64,18 @@ public class RestUtils {
     // OLD STUFF
     private String sheepData = "WOw";
     private String auctionData = "AUCTIONS";
-    private String auctionPostResponse = "AUCTION CREATED???";
-    private String registerSheepResponse = "Sheep Registered???";
-    private String bidOnAuctionResponse = "Bid Successful???";
+
+    private JSONObject registerSheepResponse;
+    private JSONObject releaseSheepResponse;
+    private JSONObject bidOnAuctionResponse;
     private String currentPriceResponse = "N/A";
+    private JSONObject createAuctionResponse;
     ArrayList<Sheep> allSheepArray;
     Sheep specifcSheep;
 
     ArrayList<Auction> allAuctionsArray;
+    ArrayList<Auction> liveAuctionsArray;
+    ArrayList<Auction> ownerAuctionsArray;
     Auction specifcAuction;
     Gson gson = new Gson();
 
@@ -94,21 +98,9 @@ public class RestUtils {
                         sheepData = response.toString();
                         ArrayList<Sheep> tempAllSheepArray = gson.fromJson(sheepData, sheepListType);
                         Log.wtf("NAME CHECK", tempAllSheepArray.get(1).getSheepName());
-                        //for (int x=0; x < response.length(); x++){
                         allSheepArray = tempAllSheepArray;
                         listener.getResult(allSheepArray);
-                        //        JSONObject sheep = response.getJSONObject(x);
-                        //         sheepData.concat("\n" + sheep.getString("0"));
-                        //          Log.wtf("Sheep:", String.valueOf(x)+ " Name: " + sheep.getString("0"));
 
-
-                        //}
-
-
-                        // sheepData = response.toString();
-                        //} catch (JSONException e) {
-                        //    e.printStackTrace();
-                        //}
                     }
                 },
                 new Response.ErrorListener() {
@@ -190,7 +182,7 @@ public class RestUtils {
                     @Override
                     public void onResponse(JSONObject response) {
                         //try {
-                        Log.wtf("get all sheep Response:", response.toString());
+                        Log.wtf("get specifc sheep Response:", response.toString());
                         sheepData = response.toString();
                         Sheep tempSheep = gson.fromJson(sheepData, Sheep.class);
                         Log.wtf("NAME CHECK", tempSheep.getSheepName());
@@ -224,38 +216,8 @@ public class RestUtils {
         return specifcSheep;
     }
 
-    public Sheep getSheepByIdAHHHHH(String sheepId){
-        String sheepInfoUrl = "https:/vast-brook-68973.herokuapp.com/sheep/" + sheepId;
-        //RequestQueue requestQueue = Volley.newRequestQueue(appContext);
-        JsonObjectRequest sheepInfoRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                sheepInfoUrl,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.wtf("get all sheep Response:", response.toString());
-                        //try {
-                            sheepData = response.toString();
-                            specifcSheep = gson.fromJson(sheepData, Sheep.class);
-                       // } catch (JSONException e) {
-                       //     e.printStackTrace();
-                        //}
-                        //txtSheepResults.setText(sheepData);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.wtf("Error with Get All Sheep", error.toString());
-                        sheepData = error.toString();
-                    }
-                }
-        );
-        requestQueue.add(sheepInfoRequest);
-        return specifcSheep;
-    }
-    public String registerSheepRequest(String userId, String tokenId,final SheepRestListener<String> listener) {
+
+    public JSONObject registerSheepRequest(String userId, String tokenId,final SheepRestListener<JSONObject> listener) {
         String registerSheepUrl = "https:/vast-brook-68973.herokuapp.com/sheep/register";
         //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
         try {
@@ -266,10 +228,12 @@ public class RestUtils {
             JsonObjectRequest registerSheepRequest = new JsonObjectRequest(Request.Method.POST, registerSheepUrl, registerSheepBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.wtf("get all sheep Response:", response.toString());
+                    Log.wtf("Register sheep Response:", response.toString());
                     //try {
                     //sheepData = response.toString();
                     //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    registerSheepResponse = response;
+                    listener.getResult(registerSheepResponse);
                     try {
                         //JSONObject postResponseObj = new JSONObject(response);
                         Log.wtf("RESPONSE FROM POST", response.toString());
@@ -300,7 +264,7 @@ public class RestUtils {
         return registerSheepResponse;
     }
 
-    public String releaseSheepRequest(String userId, String tokenId,final SheepRestListener<String> listener) {
+    public JSONObject releaseSheepRequest(String userId, String tokenId,final SheepRestListener<JSONObject> listener) {
         String registerSheepUrl = "https:/vast-brook-68973.herokuapp.com/sheep/release";
         //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
         try {
@@ -311,10 +275,12 @@ public class RestUtils {
             JsonObjectRequest auctionCreationRequest = new JsonObjectRequest(Request.Method.POST, registerSheepUrl, registerSheepBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.wtf("get all sheep Response:", response.toString());
+                    Log.wtf("Release sheep Response:", response.toString());
                     //try {
                     //sheepData = response.toString();
                     //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    releaseSheepResponse = response;
+                    listener.getResult(releaseSheepResponse);
                     try {
                         //JSONObject postResponseObj = new JSONObject(response);
                         Log.wtf("RESPONSE FROM POST", response.toString());
@@ -341,10 +307,10 @@ public class RestUtils {
             //TODO ERROR HERE
         }
         //TODO THIS RETURNS NOTHING
-        return registerSheepResponse;
+        return releaseSheepResponse;
     }
 
-    public String postBidRequest(String userId, String tokenId, String bidAmount,final SheepRestListener<String> listener) {
+    public JSONObject postBidRequest(String userId, String tokenId, String bidAmount,final SheepRestListener<JSONObject> listener) {
         String postBidUrl = "https:/vast-brook-68973.herokuapp.com/auctions/bid";
         //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
         try {
@@ -360,6 +326,8 @@ public class RestUtils {
                     //try {
                     //sheepData = response.toString();
                     //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    bidOnAuctionResponse = response;
+                    listener.getResult(bidOnAuctionResponse);
                     try {
                         //JSONObject postResponseObj = new JSONObject(response);
                         Log.wtf("RESPONSE FROM BID", response.toString());
@@ -389,8 +357,102 @@ public class RestUtils {
         return bidOnAuctionResponse;
     }
 
+    public JSONObject postTransferRequest(String fromUserId, String toUserId, String tokenId,final SheepRestListener<JSONObject> listener) {
+        String postTransferUrl = "https:/vast-brook-68973.herokuapp.com/sheep/" + tokenId + "/transfer";
+        //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
+        try {
+            JSONObject transferSheepBody = new JSONObject();
+            transferSheepBody.put("from_id", fromUserId);
+            transferSheepBody.put("sheep_id", tokenId);
+            transferSheepBody.put("to_id", toUserId);
+            Log.wtf("THE JSON BODY TRANSFER", transferSheepBody.toString());
+            JsonObjectRequest sheepTransferRequest = new JsonObjectRequest(Request.Method.POST, postTransferUrl, transferSheepBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.wtf("Transfer Sheep Response:", response.toString());
+                    //try {
+                    //sheepData = response.toString();
+                    //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    try {
+                        //JSONObject postResponseObj = new JSONObject(response);
+                        Log.wtf("RESPONSE FROM TRANSFER", response.toString());
+                    } catch (Exception e) {
+                        Log.wtf("RESPONSE FROM TRANSFER", "RESPONSE FAILED");
+                    }
+                    // } catch (JSONException e) {
+                    //     e.printStackTrace();
+                    //}
+                    //txtSheepResults.setText(sheepData);
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.wtf("Error with Auction Bid", error.toString());
+                            //sheepData = error.toString();
+                        }
+                    }
 
-    public String createNewAuction(String userId, String tokenId, String startingPrice, String endingPrice, String auctionDuration,final SheepRestListener<String> listener) {
+            );
+            requestQueue.add(sheepTransferRequest);
+        } catch (JSONException e) {
+            //TODO ERROR HERE
+        }
+        //TODO THIS RETURNS NOTHING
+        return bidOnAuctionResponse;
+    }
+
+    public JSONObject cancelAuctionRequest(String userId, String tokenId,final SheepRestListener<JSONObject> listener) {
+        String postBidUrl = "https:/vast-brook-68973.herokuapp.com/auctions/cancel";
+        //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
+        try {
+            //TODO MAKE SURE USER ID IS EQUAL TO SELLER ID JUST IN CASE
+            JSONObject cancelAuctionBody = new JSONObject();
+            cancelAuctionBody.put("seller_id", userId);
+            cancelAuctionBody.put("sheep_id", tokenId);
+            Log.wtf("THE JSON BODY Cancel", cancelAuctionBody.toString());
+            JsonObjectRequest auctionCancellationRequest = new JsonObjectRequest(Request.Method.POST, postBidUrl, cancelAuctionBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.wtf("bid on sheep response:", response.toString());
+                    //try {
+                    //sheepData = response.toString();
+                    //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    bidOnAuctionResponse = response;
+                    listener.getResult(bidOnAuctionResponse);
+                    try {
+                        //JSONObject postResponseObj = new JSONObject(response);
+
+
+                        Log.wtf("RESPONSE FROM BID", response.toString());
+                    } catch (Exception e) {
+                        Log.wtf("RESPONSE FROM BID", "RESPONSE FAILED");
+                    }
+                    // } catch (JSONException e) {
+                    //     e.printStackTrace();
+                    //}
+                    //txtSheepResults.setText(sheepData);
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.wtf("Error with Auction Bid", error.toString());
+                            //sheepData = error.toString();
+                        }
+                    }
+
+            );
+            requestQueue.add(auctionCancellationRequest);
+        } catch (JSONException e) {
+            //TODO ERROR HERE
+        }
+        //TODO THIS RETURNS NOTHING
+        return bidOnAuctionResponse;
+    }
+
+
+    public JSONObject createNewAuction(String userId, String tokenId, String startingPrice, String endingPrice, String auctionDuration,final SheepRestListener<JSONObject> listener) {
         String createAuctionUrl = "https:/vast-brook-68973.herokuapp.com/auctions";
         //JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
         try {
@@ -404,10 +466,12 @@ public class RestUtils {
             JsonObjectRequest auctionCreationRequest = new JsonObjectRequest(Request.Method.POST, createAuctionUrl, createAuctionBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.wtf("get all sheep Response:", response.toString());
-                    //try {
+                    Log.wtf("Create Auction Response:", response.toString());
+                    //try {cre
                     //sheepData = response.toString();
                     //specifcSheep = gson.fromJson(sheepData, Sheep.class);
+                    createAuctionResponse = response;
+                    listener.getResult(createAuctionResponse);
                     try {
                         //JSONObject postResponseObj = new JSONObject(response);
                         Log.wtf("RESPONSE FROM POST", response.toString());
@@ -425,6 +489,7 @@ public class RestUtils {
                         public void onErrorResponse(VolleyError error) {
                             Log.wtf("Error with Create Auction", error.toString());
                             //sheepData = error.toString();
+                            //TODO - CONVERT TO A JSON OBJECT AND CALL THE LISTENER>GET RESULT
                         }
                     }
 
@@ -434,7 +499,7 @@ public class RestUtils {
             //TODO ERROR HERE
         }
         //TODO THIS RETURNS NOTHING
-        return auctionPostResponse;
+        return createAuctionResponse;
     }
 
     public String getAuctionCurrentPrice(String tokenId, final SheepRestListener<String> listener) {
@@ -451,27 +516,13 @@ public class RestUtils {
                             Log.wtf("get current price:", response.toString());
                             sheepData = response.toString();
                             String tempSheep = response.getString("price");
-
-                            //for (int x=0; x < response.length(); x++){
                             currentPriceResponse = tempSheep;
                             listener.getResult(tempSheep);
 
                         }catch (JSONException e){
-                            Log.wtf("SOMETHING WENT WRONG ", e.toString());
+                            Log.wtf("SOMETHING WENT WRONG Current Price", e.toString());
                             e.printStackTrace();
                         }
-                        //        JSONObject sheep = response.getJSONObject(x);
-                        //         sheepData.concat("\n" + sheep.getString("0"));
-                        //          Log.wtf("Sheep:", String.valueOf(x)+ " Name: " + sheep.getString("0"));
-
-
-                        //}
-
-
-                        // sheepData = response.toString();
-                        //} catch (JSONException e) {
-                        //    e.printStackTrace();
-                        //}
                     }
                 },
                 new Response.ErrorListener() {
@@ -490,53 +541,43 @@ public class RestUtils {
 
 
 
-    public String createNewAuctionAAAAGH(String userId, String tokenId, String startingPrice, String endingPrice, String auctionDuration,final SheepRestListener<String> listener){
-        String createAuctionUrl = "https:/vast-brook-68973.herokuapp.com/auctions";
-        JsonObject o = new JsonParser().parse("{\"\": \"A\"}").getAsJsonObject();
-        StringRequest auctionCreationRequest = new StringRequest(Request.Method.POST, createAuctionUrl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject postResponseObj = new JSONObject(response);
-                    Log.wtf("RESPONSE FROM POST", postResponseObj.toString());
-                } catch (Exception e) {
-                    Log.wtf("RESPONSE FROM POST", "RESPONSE FAILED");
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.wtf("POST ERROR","Post Data : Response Failed");
-            }
-        }){
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params=new HashMap<String, String>();
-                params.put("userId", userId);
-                params.put("sheepId",tokenId);
-                params.put("auctionDuration",auctionDuration);
-                params.put("startingPrice",startingPrice);
-                params.put("endingPrice",endingPrice);
-                listener.getResult(params.toString());
-                auctionPostResponse = params.toString();
-                return params;
-            }
 
-            @Override
-            public Map<String,String> getHeaders() throws AuthFailureError {
-                Map<String,String> params=new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                return params;
-            }
-        };
-        requestQueue.add(auctionCreationRequest);
-        //TODO THIS DOES NOTHING
-        return auctionPostResponse;
+    public ArrayList<Auction> getLiveAuctions(final SheepRestListener<ArrayList<Auction>> listener) {
+        String liveAuctionsUrl = "https:/vast-brook-68973.herokuapp.com/auctions/live";
+
+        Type auctionsListType = new TypeToken<ArrayList<Auction>>(){}.getType();
+        JsonArrayRequest allSheepRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                liveAuctionsUrl,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        //try {
+                        Log.wtf("get live auctions Response:", response.toString());
+                        auctionData = response.toString();
+                        ArrayList<Auction> tempLiveAuctionsArray = gson.fromJson(auctionData, auctionsListType);
+                        //Log.wtf("NAME CHECK", tempAllAuctionsArray.get(1).getSheepId());
+                        //for (int x=0; x < response.length(); x++){
+                        liveAuctionsArray = tempLiveAuctionsArray;
+                        listener.getResult(liveAuctionsArray);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.wtf("Error with Get All Auctions", error.toString());
+                        auctionData = error.toString();
+                    }
+                }
+
+        );
+        requestQueue.add(allSheepRequest);
+        return liveAuctionsArray;
     }
 
-
     public ArrayList<Auction> getAllAuctions(final SheepRestListener<ArrayList<Auction>> listener) {
-        String allAuctionsUrl = "https:/vast-brook-68973.herokuapp.com/auctions";
+        String allAuctionsUrl = "https:/vast-brook-68973.herokuapp.com/auctions/";
 
         Type auctionsListType = new TypeToken<ArrayList<Auction>>(){}.getType();
 
@@ -553,22 +594,8 @@ public class RestUtils {
                         Log.wtf("get all auctions Response:", response.toString());
                         auctionData = response.toString();
                         ArrayList<Auction> tempAllAuctionsArray = gson.fromJson(auctionData, auctionsListType);
-                        Log.wtf("NAME CHECK", tempAllAuctionsArray.get(1).getSheepId());
-                        //for (int x=0; x < response.length(); x++){
                         allAuctionsArray = tempAllAuctionsArray;
                         listener.getResult(allAuctionsArray);
-                        //        JSONObject sheep = response.getJSONObject(x);
-                        //         sheepData.concat("\n" + sheep.getString("0"));
-                        //          Log.wtf("Sheep:", String.valueOf(x)+ " Name: " + sheep.getString("0"));
-
-
-                        //}
-
-
-                        // sheepData = response.toString();
-                        //} catch (JSONException e) {
-                        //    e.printStackTrace();
-                        //}
                     }
                 },
                 new Response.ErrorListener() {
@@ -582,6 +609,42 @@ public class RestUtils {
         );
         requestQueue.add(allSheepRequest);
         return allAuctionsArray;
+    }
+
+    public ArrayList<Auction> getAuctionsByOwner(String ownerId, final SheepRestListener<ArrayList<Auction>> listener) {
+        String ownerAuctionsUrl = "https:/vast-brook-68973.herokuapp.com/auctions/owner/" + ownerId;
+
+        Type auctionsListType = new TypeToken<ArrayList<Auction>>(){}.getType();
+
+        //RequestQueue requestQueue = Volley.newRequestQueue(appContext);
+
+        JsonArrayRequest allSheepRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                ownerAuctionsUrl,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        //try {
+                        Log.wtf("get auctions By Owner Response:", response.toString());
+                        auctionData = response.toString();
+                        ArrayList<Auction> tempOwnerAuctionsArray = gson.fromJson(auctionData, auctionsListType);
+                        ownerAuctionsArray = tempOwnerAuctionsArray;
+                        listener.getResult(ownerAuctionsArray);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.wtf("Error with Get All Auctions", error.toString());
+                        auctionData = error.toString();
+                    }
+                }
+
+        );
+        requestQueue.add(allSheepRequest);
+        return ownerAuctionsArray;
     }
 }
 

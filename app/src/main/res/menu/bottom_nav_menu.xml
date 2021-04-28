@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-        <item
-            android:id="@+id/action_scan"
-            android:enabled="true"
-            android:icon="@drawable/ic_action_scan"
-            android:title="Scan New Card"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/action_view_deck"
-            android:enabled="true"
-            android:icon="@drawable/ic_action_view_deck"
-            android:title="My Deck"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/action_account"
-            android:enabled="true"
-            android:icon="@drawable/ic_action_view_account"
-            android:title="My Account"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/action_view_all"
-            android:enabled="true"
-            android:icon="@drawable/ic_action_view_all"
-            android:title="My Account"
-            app:showAsAction="ifRoom" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/action_open_hangouts"
-        android:enabled="true"
-        android:icon="@drawable/cryptids_logo_v2"
-        android:title="My Account"
+        android:id="@+id/action_view_deck"
+
+        android:icon="@drawable/ic_action_view_deck"
+        android:title="My Deck"
         app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/action_view_auctions"
-            android:enabled="true"
-            android:icon="@drawable/ic_action_view_auctions"
-            android:title="Auction House"
-            app:showAsAction="ifRoom" />
-    </menu>
+    <item
+        android:id="@+id/action_view_all"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_view_all"
+        android:title="View All Cards"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_view_auctions"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_view_auctions"
+        android:title="Auction House"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_scan"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_scan"
+        android:title="Scan New Card"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_open_dual"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_card_dual"
+        android:title="Batle Plain"
+        app:showAsAction="ifRoom" />
+
+</menu>

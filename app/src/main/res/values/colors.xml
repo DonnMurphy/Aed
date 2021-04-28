@@ -3,5 +3,9 @@
     <color name="colorPrimary">#7E56C1</color>
     <color name="colorPrimaryDark">#4D2B90</color>
     <color name="colorAccent">#B084F4</color>
+    <color name="colorAccentTransparent">#99B084F4</color>
+    <color name="colorBackgroundTransparent">#99CFD8DC</color>
     <color name="colorBackground">#CFD8DC</color>
+    <color name="colorWarningRed">#ab000d</color>
+    <color name="colorSuccessGreen">#43a047</color>
 </resources>

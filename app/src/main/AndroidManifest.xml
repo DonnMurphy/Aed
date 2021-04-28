@@ -3,16 +3,30 @@
     package="com.jambons.aed">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera.ar"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/cryptids_logo_v2"
-        android:label="@string/app_name"
+        android:icon="@drawable/cryptids_app_logo_background"
+        android:label="Cryptids"
         android:largeHeap="true"
-        android:roundIcon="@drawable/cryptids_logo_v2"
+        android:roundIcon="@drawable/cryptids_app_logo_background"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateNewAuctionActivity"></activity>
+        <activity android:name=".AuctionChatList"></activity>
+        <activity android:name=".AuctionMessageThread" />
+
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
+
+        <activity android:name=".CardDual" />
+        <activity android:name=".CreateNewAuctionActivity" />
         <activity android:name=".ViewAuction" />
         <activity android:name=".ViewAuctions" />
         <activity android:name=".ViewSheep" />

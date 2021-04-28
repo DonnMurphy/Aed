@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>52
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    </style>
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">serif-monospace</item>
     </style>
 
         <style name="AppTheme.NoActionBar">
@@ -13,7 +17,7 @@
             <item name="windowNoTitle">true</item>
             <item name="android:statusBarColor">@android:color/transparent</item>
         </style>
-        <style name="AppTheme.Launcher">
+        <style  name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
         <!-- <item name="colorPrimaryDark">@android:color/white</item> -->

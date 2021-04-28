@@ -1,0 +1,50 @@
+{
+  materials: [
+    {
+      name: 'lambert2SG',
+      parameters: [
+        {
+          baseColor: 'Tex_Koala',
+        },
+        {
+          baseColorTint: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/model_koala/koala_model.obj',
+    name: 'koala_model',
+    recenter: 'root',
+    scale: 0.020815,
+  },
+  samplers: [
+    {
+      file: 'sampledata/model_koala\\Tex_Koala.png',
+      name: 'Tex_Koala',
+      pipeline_name: 'Tex_Koala.png',
+    },
+  ],
+  version: '0.52:1',
+}

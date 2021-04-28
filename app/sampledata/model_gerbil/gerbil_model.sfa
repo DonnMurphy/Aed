@@ -1,0 +1,50 @@
+{
+  materials: [
+    {
+      name: 'lambert2SG',
+      parameters: [
+        {
+          baseColor: 'Tex_Gerbil',
+        },
+        {
+          baseColorTint: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/model_gerbil/gerbil_model.obj',
+    name: 'gerbil_model',
+    recenter: 'root',
+    scale: 0.037151000000000003,
+  },
+  samplers: [
+    {
+      file: 'sampledata/model_gerbil\\Tex_Gerbil.png',
+      name: 'Tex_Gerbil',
+      pipeline_name: 'Tex_Gerbil.png',
+    },
+  ],
+  version: '0.52:1',
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/AccountBalanceItem"
+        android:title="Acc_Bal"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/viewChatItem"
+        android:icon="@drawable/ic_view_chat"
+        android:title="Chat"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/AccountIcon"
+        android:icon="@drawable/ic_action_view_account"
+        android:title="User"
+        app:showAsAction="ifRoom" >
+    <menu>
+
+        <item
+            android:id="@+id/viewUserName"
+            android:title="=UserName" />
+
+        <item
+            android:id="@+id/viewAccountItem"
+            android:title="View Account" />
+
+        <item
+            android:id="@+id/signOutItem"
+            android:title="Sign Out" />
+
+    </menu>
+    </item>
+
+
+<!--
+    <item
+        android:id="@+id/item3"
+        android:title="Item 2"
+        app:showAsAction="never" />
+        -->
+
+</menu>
